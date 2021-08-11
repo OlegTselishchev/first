@@ -21,7 +21,9 @@ public class Customer {
     }
 
     public void setId(Integer id) {
-        this.id = id;
+        if(id != null) {
+            this.id = id;
+        }
     }
 
     public String getLastName() {
@@ -29,7 +31,9 @@ public class Customer {
     }
 
     public void setLastName(String lastName) {
-        this.lastName = lastName;
+        if((lastName != null) && (!lastName.isEmpty())) {
+            this.lastName = lastName;
+        }
     }
 
     public String getFirstName() {
@@ -37,6 +41,8 @@ public class Customer {
     }
 
     public void setFirstName(String firstName) {
-        this.firstName = firstName;
+        if((firstName != null) && (!firstName.isEmpty())) {
+            this.firstName = firstName;
+        }
     }
 }

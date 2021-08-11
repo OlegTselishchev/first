@@ -36,13 +36,14 @@ public class CustomerService {
         }
     }
 
-    public void updateCustomer(Customer customer){
+    public boolean updateCustomer(Customer customer){
         if (customerRepository.existsById(customer.getId())){
             Customer customerForUpdate = customerRepository.getById(customer.getId());
             customerForUpdate.setLastName(customer.getLastName());
             customerForUpdate.setFirstName(customer.getFirstName());
             customerRepository.save(customerForUpdate);
+            return true;
         }
-
+        return false;
     }
 }

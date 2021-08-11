@@ -3,6 +3,8 @@ package com.netcracker.first.controller;
 import com.netcracker.first.model.Customer;
 import com.netcracker.first.service.CustomerService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -36,5 +38,13 @@ public class CustomerController {
     @DeleteMapping("customer/{id}")
     public void delete(@PathVariable(name = "id")  Integer id){
         customerService.deleteCustomer(id);
+    }
+
+    @PatchMapping("/customer")
+    public ResponseEntity<?> update(@RequestBody Customer customer){
+        boolean b = customerService.updateCustomer(customer);
+        return b
+                ? new ResponseEntity<>(HttpStatus.OK)
+                : new ResponseEntity<>(HttpStatus.NOT_MODIFIED);
     }
 }
